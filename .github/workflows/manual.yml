@@ -1,0 +1,26 @@
+name: FluidNC Release Builder
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'new branch'
+        required: true
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create content
+        run: |
+          mkdir foo
+          echo "this is a test" >foo/bar
+      - name: Deploy
+        uses: MitchBradley/MitchBradley.github.io
+        with:
+          folder: foo
+          ssh-key: ${{ secrets.GHP_DEPLOY_KEY }}
+          branch: ${{ github.event.inputs.branch }}
+          target-folder: foo1
