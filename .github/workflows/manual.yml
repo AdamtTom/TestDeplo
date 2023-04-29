@@ -18,9 +18,10 @@ jobs:
           mkdir foo
           echo "this is a test" >foo/bar
       - name: Deploy
-        uses: MitchBradley/MitchBradley.github.io
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: foo
+          repository-name: MitchBradley/MitchBradley.github.io
           ssh-key: ${{ secrets.GHP_DEPLOY_KEY }}
           branch: ${{ github.event.inputs.branch }}
           target-folder: foo1
